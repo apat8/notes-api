@@ -3,6 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import userRoutes from "./routes/userRoutes.js";
 import connectDB from "./config/db.js";
 
 // Set server Port
@@ -37,6 +38,9 @@ app.use(express.urlencoded({extended: true}));
 
 // Cookie parser middleware
 app.use(cookieParser());
+
+// Routes
+app.use("/api/users", userRoutes);
 
 // Start server only when connection to MongoDB is successfull
 mongoose.connection.once("open", () => {
