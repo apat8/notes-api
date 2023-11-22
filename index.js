@@ -5,6 +5,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js";
 import connectDB from "./config/db.js";
+import errorHandler from "./middleware/errorMiddleware.js";
 
 // Set server Port
 const PORT = process.env.PORT || 3500;
@@ -41,6 +42,9 @@ app.use(cookieParser());
 
 // Routes
 app.use("/api/users", userRoutes);
+
+// Custom error handler
+app.use(errorHandler);
 
 // Start server only when connection to MongoDB is successfull
 mongoose.connection.once("open", () => {
