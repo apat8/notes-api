@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js";
+import noteRoutes from "./routes/noteRoutes.js";
 import connectDB from "./config/db.js";
 import errorHandler from "./middleware/errorMiddleware.js";
 
@@ -42,6 +43,7 @@ app.use(cookieParser());
 
 // Routes
 app.use("/api/users", userRoutes);
+app.use("/api/notes", noteRoutes);
 
 // Custom error handler
 app.use(errorHandler);
