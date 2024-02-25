@@ -5,6 +5,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js";
 import noteRoutes from "./routes/noteRoutes.js";
+import collectionRoutes from "./routes/collectionRoutes.js";
 import connectDB from "./config/db.js";
 import errorHandler from "./middleware/errorMiddleware.js";
 
@@ -44,6 +45,7 @@ app.use(cookieParser());
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/notes", noteRoutes);
+app.use("/api/collections", collectionRoutes);
 
 // Custom error handler
 app.use(errorHandler);
