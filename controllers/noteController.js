@@ -13,7 +13,7 @@ const addNote = asyncHandler (async (req, res) => {
         userID: req.user._id
     });
 
-    res.status(201).json({message:'Success'});
+    res.status(201).json({message:'Success', note});
 });
 
 // @desc    Get all user notes 
