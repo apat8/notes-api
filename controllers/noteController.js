@@ -21,8 +21,7 @@ const addNote = asyncHandler (async (req, res) => {
 // @access  Private
 const getAllNotes = asyncHandler (async (req, res) => {
     const notes = await Note.find({
-        userID: req.user._id,
-        isTrash: false
+        userID: req.user._id
     }).exec();
 
     return res.status(200).json(notes);
