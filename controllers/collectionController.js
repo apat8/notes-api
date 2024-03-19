@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler"
 import Collection from "../models/CollectionModel.js";
+import Note from "../models/noteModel.js";
 
 // @desc    Create new collection
 // route    POST /api/collections/
@@ -34,6 +35,19 @@ const getCollectionByID = asyncHandler (async (req, res) => {
     const collection = await Collection.findById(req.params.collectionID).exec();
 
     return res.status(200).json(collection);
+});
+
+// @desc    Get a user's collection notes
+// route    Get /api/collections/:collectionID/notes
+// @access  Private
+const getCollectionNotes = asyncHandler (async (req, res) => {
+    const notes = await Note.find({
+        userID: req.user._id,
+        collectionID: req.params.collectionID,
+        isTrash: false
+    }).exec();
+
+    return res.status(200).json(notes);
 });
 
 // @desc    Update collection
@@ -76,6 +90,7 @@ export {
     addCollection,
     getAllCollections,
     getCollectionByID,
+    getCollectionNotes,
     updateCollectionByID,
     deleteCollectionByID
 };
