@@ -5,11 +5,12 @@ import Note from "../models/noteModel.js";
 // route    POST /api/notes/
 // @access  Private
 const addNote = asyncHandler (async (req, res) => {
-    const {title, content} = req.body;
+    const {title, content, collectionID} = req.body;
 
     const note = await Note.create({
         title,
         content,
+        collectionID,
         userID: req.user._id
     });
 
